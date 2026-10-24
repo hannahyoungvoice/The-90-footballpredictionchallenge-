@@ -1,1 +1,877 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08111f">
+
+  <title>THE 90 | Football Prediction Challenge</title>
+
+  <meta name="description"
+    content="Welcome to THE 90 Football Prediction Challenge. Learn the rules, explore Safe Zones, register and follow contestant progress.">
+
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: #101d30;
+      --gold: #f6c453;
+      --green: #19c37d;
+      --white: #f8fafc;
+      --muted: #a9b5c7;
+      --border: #26364b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 17, 31, .97);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 9px;
+      color: white;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      font-size: 13px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .menu-button {
+      display: none;
+      color: white;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 8px;
+      padding: 13px 21px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+      transition: .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .gold-button {
+      background: var(--gold);
+      color: #17130a;
+    }
+
+    .green-button {
+      background: var(--green);
+      color: #04170e;
+    }
+
+    .outline-button {
+      border: 1px solid var(--border);
+      color: white;
+      background: transparent;
+    }
+
+    .hero {
+      padding: 90px 0 80px;
+      background:
+        radial-gradient(ellipse at 80% 10%,
+        rgba(25,195,125,.15), transparent 42%),
+        radial-gradient(ellipse at 10% 90%,
+        rgba(246,196,83,.10), transparent 40%);
+    }
+
+    .hero-content {
+      max-width: 790px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(43px, 8vw, 78px);
+      line-height: 1.08;
+      margin: 18px 0;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 17px;
+      margin-bottom: 25px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 13px 16px;
+      border-left: 3px solid var(--gold);
+      background: rgba(246,196,83,.07);
+      color: var(--muted);
+      font-size: 12px;
+      max-width: 690px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(27px, 5vw, 39px);
+      margin: 8px 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 23px;
+    }
+
+    .card h3 {
+      color: var(--gold);
+      margin-bottom: 9px;
+      font-size: 19px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .step-number {
+      width: 39px;
+      height: 39px;
+      border-radius: 10px;
+      background: rgba(246,196,83,.12);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .prize-card {
+      text-align: center;
+    }
+
+    .prize-card strong {
+      display: block;
+      font-size: 25px;
+      color: var(--gold);
+      margin: 7px 0;
+    }
+
+    .prize-card span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .highlight {
+      border-color: var(--gold);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      background: var(--panel);
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--gold);
+      background: #142238;
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    .status {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 12px;
+    }
+
+    .register-panel {
+      background: linear-gradient(135deg, #13263a, #101d30);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 35px;
+      text-align: center;
+    }
+
+    .register-panel h2 {
+      font-size: clamp(27px, 5vw, 39px);
+      margin-bottom: 10px;
+    }
+
+    .register-panel p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 20px;
+    }
+
+    .payment-note {
+      border: 1px solid var(--border);
+      padding: 17px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: left;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    details {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 17px;
+      border-radius: 10px;
+      margin: 12px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    details p {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 35px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    footer .logo {
+      margin-bottom: 12px;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 18px;
+      z-index: 90;
+      border-radius: 30px;
+      background: var(--green);
+      color: #04170e;
+      font-weight: 800;
+      padding: 12px 17px;
+      box-shadow: 0 5px 25px #0006;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        padding: 20px 5%;
+        background: #0b1728;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      nav a {
+        padding: 11px 0;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .register-panel {
+        padding: 23px 16px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <a class="logo" href="#home">
+      THE 90
+      <span>PREDICT. WIN. REPEAT.</span>
+    </a>
+
+    <button class="menu-button" id="menuButton"
+      aria-label="Open navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav id="navigation">
+      <a href="#home">Home</a>
+      <a href="#how-to-play">How to Play</a>
+      <a href="#prizes">Prizes</a>
+      <a href="#scoreboard">Scoreboard</a>
+      <a href="#faq">FAQs</a>
+      <a class="button gold-button"
+         href="https://forms.gle/b7Krynt9yKsQkcZq5">
+        Register
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="eyebrow">The Football Prediction Challenge</div>
+
+      <h1>90 Wins.<br><span>One Challenge.</span></h1>
+
+      <p>
+        Welcome to THE 90 — a football prediction challenge
+        built around winning streaks, strategic decisions and
+        milestone rewards. How far can you go?
+      </p>
+
+      <div class="hero-actions">
+        <a class="button gold-button"
+           href="https://forms.gle/b7Krynt9yKsQkcZq5">
+          REGISTER NOW
+        </a>
+
+        <a class="button outline-button" href="#how-to-play">
+          HOW TO PLAY
+        </a>
+
+        <a class="button outline-button" href="#scoreboard">
+          VIEW SCOREBOARD
+        </a>
+      </div>
+
+      <div class="notice">
+        Read the official rules, eligibility conditions and prize
+        terms before registering. Participation and rewards are
+        subject to verification and the published competition rules.
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO PLAY -->
+  <section id="how-to-play">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Your Journey Starts Here</div>
+        <h2>How to Play</h2>
+        <p>
+          Understand the process before joining the challenge.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="step-number">01</div>
+          <h3>Register</h3>
+          <p>
+            Complete the official registration form and provide
+            accurate information.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="step-number">02</div>
+          <h3>Complete Payment</h3>
+          <p>
+            The stated registration fee is ₦1,000. Follow the
+            official payment instructions and keep your receipt.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="step-number">03</div>
+          <h3>Get Your ID</h3>
+          <p>
+            After registration and payment verification, receive
+            your official contestant ID.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="step-number">04</div>
+          <h3>Submit Predictions</h3>
+          <p>
+            Follow the eligible fixture, market, odds and submission
+            requirements in the official rules.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="step-number">05</div>
+          <h3>Build Your Streak</h3>
+          <p>
+            Aim to progress through the challenge. Results must be
+            verified under the official rules.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="step-number">06</div>
+          <h3>Choose Your Path</h3>
+          <p>
+            At an eligible Safe Zone, choose COLLECT or CONTINUE
+            according to the applicable terms.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFE ZONES -->
+  <section id="prizes">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">The Milestones</div>
+        <h2>Safe Zones & Rewards</h2>
+        <p>
+          Explore the proposed prize milestones for THE 90.
+          Eligibility, funding and payout conditions apply.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card prize-card">
+          <span>SAFE ZONE 01</span>
+          <h3>7 Wins</h3>
+          <strong>₦3,000</strong>
+          <span>Milestone reward</span>
+        </article>
+
+        <article class="card prize-card">
+          <span>SAFE ZONE 02</span>
+          <h3>14 Wins</h3>
+          <strong>₦10,000</strong>
+          <span>Milestone reward</span>
+        </article>
+
+        <article class="card prize-card">
+          <span>SAFE ZONE 03</span>
+          <h3>22 Wins</h3>
+          <strong>₦40,000</strong>
+          <span>Milestone reward</span>
+        </article>
+
+        <article class="card prize-card">
+          <span>SAFE ZONE 04</span>
+          <h3>30 Wins</h3>
+          <strong>₦100,000</strong>
+          <span>Milestone reward</span>
+        </article>
+
+        <article class="card prize-card">
+          <span>SAFE ZONE 05</span>
+          <h3>45 Wins</h3>
+          <strong>₦1 Million</strong>
+          <span>Milestone reward</span>
+        </article>
+
+        <article class="card prize-card">
+          <span>SAFE ZONE 06</span>
+          <h3>60 Wins</h3>
+          <strong>₦10 Million</strong>
+          <span>Milestone reward</span>
+        </article>
+
+        <article class="card prize-card">
+          <span>SAFE ZONE 07</span>
+          <h3>75 Wins</h3>
+          <strong>₦20 Million</strong>
+          <span>Milestone reward</span>
+        </article>
+
+        <article class="card prize-card highlight">
+          <span>THE FINAL MILESTONE</span>
+          <h3>90 Wins</h3>
+          <strong>₦100 Million</strong>
+          <span>Final reward, subject to official terms</span>
+        </article>
+      </div>
+
+      <p class="small-note">
+        Prize amounts shown are the proposed competition structure.
+        Publish them as guaranteed payable rewards only after the
+        funding, eligibility, verification and payout arrangements
+        have been established.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCOREBOARD -->
+  <section id="scoreboard">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Contestant Progress</div>
+        <h2>THE 90 Scoreboard</h2>
+        <p>
+          A preview of the scoreboard format. This sample is not
+          a live or verified competition record.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Slot</th>
+              <th>Contestant ID</th>
+              <th>Name</th>
+              <th>Streak</th>
+              <th>Safe Zone</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>T90-01</td>
+              <td>Believe</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Pending verification</td>
+            </tr>
+
+            <tr>
+              <td>2</td>
+              <td>T90-02</td>
+              <td>Andy</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Pending verification</td>
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <td>T90-03</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+
+            <tr>
+              <td>4</td>
+              <td>T90-04</td>
+              <td>Benji45</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Pending verification</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="small-note">
+        The scoreboard above is manually maintained sample content.
+        Official results and contestant statuses must be updated
+        only after verification.
+      </p>
+    </div>
+  </section>
+
+  <!-- REGISTRATION -->
+  <section id="register">
+    <div class="container">
+      <div class="register-panel">
+        <div class="eyebrow">Your Challenge Begins Here</div>
+        <h2>Ready to Join THE 90?</h2>
+
+        <p>
+          Complete the registration form to submit your details.
+          Follow the official instructions for payment and
+          contestant ID confirmation.
+        </p>
+
+        <a class="button gold-button"
+           href="https://forms.gle/b7Krynt9yKsQkcZq5"
+           target="_blank" rel="noopener noreferrer">
+          OPEN REGISTRATION FORM
+        </a>
+
+        <div class="payment-note">
+          <strong>Registration fee: ₦1,000</strong>
+          <br>
+          Payment checkout is not activated on this page yet.
+          Do not treat this page as proof of payment. The official
+          Paystack checkout and payment verification must be
+          connected and tested before accepting payments here.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Need Help?</div>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <details>
+        <summary>What is THE 90?</summary>
+        <p>
+          THE 90 is a football prediction challenge organised
+          around a winning-streak concept and designated Safe Zones.
+        </p>
+      </details>
+
+      <details>
+        <summary>How much is registration?</summary>
+        <p>
+          The stated registration fee is ₦1,000. Use only the
+          official payment instructions supplied by the organisers.
+        </p>
+      </details>
+
+      <details>
+        <summary>When will I receive my contestant ID?</summary>
+        <p>
+          IDs are issued after your registration details and
+          payment have been checked and confirmed.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I collect a reward at a Safe Zone?</summary>
+        <p>
+          The proposed rules provide a COLLECT or CONTINUE choice
+          at designated milestones. The final published rules
+          will explain eligibility, verification and payout terms.
+        </p>
+      </details>
+
+      <details>
+        <summary>Is the scoreboard updated automatically?</summary>
+        <p>
+          No. This initial website uses a static sample scoreboard.
+          A secure update process or database must be added for
+          verified live contestant results.
+        </p>
+      </details>
+
+      <details>
+        <summary>Where can I register?</summary>
+        <p>
+          Use the registration button on this page to open the
+          official Google Form.
+        </p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo">
+      THE 90
+      <span>PREDICT. WIN. REPEAT.</span>
+    </div>
+
+    <p>Football Prediction Challenge</p>
+    <p>Play responsibly. Read the official rules before participating.</p>
+    <p style="margin-top:12px">
+      &copy; <span id="year"></span> THE 90. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- Replace the placeholder with the official WhatsApp number.
+     Use country code and digits only, without + or spaces. -->
+<a class="whatsapp"
+   href="https://wa.me/2340000000000"
+   target="_blank" rel="noopener noreferrer">
+  WhatsApp Us
+</a>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const navigation = document.getElementById("navigation");
+
+  menuButton.addEventListener("click", function () {
+    const isOpen = navigation.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.textContent = isOpen ? "✕" : "☰";
+  });
+
+  document.querySelectorAll("#navigation a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      navigation.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "☰";
+    });
+  });
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
+
